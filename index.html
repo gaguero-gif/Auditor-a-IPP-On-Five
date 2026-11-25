@@ -389,6 +389,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
   .hf-tt-tile.is-total { justify-items: center; text-align: center; }
   .hf-tt-tile.is-total .v { position: relative; width: 9.4rem; height: 9.4rem; }
   .hf-tt-tile.is-total svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hf-tt-tile.is-total .ej { margin-top: 4px; padding: 4px 12px; border-radius: 999px; background: rgba(255, 255, 255, .16); color: #ffffff; font-size: var(--cds-font-size-caption); font-weight: 700; }
   .hf-tt-tile.is-total .trk { fill: none; stroke: rgba(255, 255, 255, .18); stroke-width: 10; }
   .hf-tt-tile.is-total .arc { fill: none; stroke-width: 10; stroke-linecap: round; transition: stroke-dasharray .6s ease; }
   .hf-tt-tile.is-total b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.9rem; line-height: 1; }
@@ -569,7 +570,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       <section class="hf-card">
         <h2>% de cumplimiento por KPI</h2>
         <p class="hf-note">Locales relevados que cumplen cada KPI del ON FIVE.</p>
-        <div class="hf-sem-key"><span style="--k: var(--color-ok);">Verde 70–100%</span><span style="--k: var(--color-warn);">Ámbar 60–69%</span><span style="--k: var(--color-bad);">Rojo 0–59%</span></div>
+        <div class="hf-sem-key"><span style="--k: var(--color-bad);">Rojo 0–59%</span><span style="--k: var(--color-warn);">Ámbar 60–69%</span><span style="--k: var(--color-ok);">Verde 70–100%</span></div>
         <div class="hf-hbars dash-skeleton" data-draw="tt-kpi" data-source="evaluacion"></div>
       </section>
       <section class="hf-card">
@@ -587,7 +588,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       <section class="hf-card hf-rk is-top">
         <h2>Top 10: Mejores locales</h2>
         <p class="hf-note">Listado de los 10 clientes mejor ejecutados.</p>
-        <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar = KPI exonerado:</b> el local no tenía promoción ni material de ninguna marca, por eso se le otorga el puntaje de Promo SO o Visibilidad.</span></span></p>
+        <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
             <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
@@ -596,9 +597,9 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         </div>
       </section>
       <section class="hf-card hf-rk is-bottom">
-        <h2>Bottom 10: Locales críticos con oportunidad</h2>
+        <h2>Bottom 10: Locales con oportunidad</h2>
         <p class="hf-note">Listado de los 10 clientes con mayor oportunidad de mejora / críticos en ejecución.</p>
-        <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar = KPI exonerado:</b> el local no tenía promoción ni material de ninguna marca, por eso se le otorga el puntaje de Promo SO o Visibilidad.</span></span></p>
+        <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
             <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
@@ -607,7 +608,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         </div>
       </section>
       <section class="hf-card hf-rk is-cero">
-        <h2>Clientes críticos: puntaje cero 0% IPP ON FIVE</h2>
+        <h2>Clientes críticos con PUNTAJE CERO de IPP</h2>
         <p class="hf-note">Listado de clientes críticos que no cumplen con una buena ejecución. Validar si tiene giro de negocio correcto, ajustar la marca prioritaria o trasladarlos al Horeca Clásico.</p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
@@ -621,7 +622,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     <section class="hf-card hf-listado">
       <h2>Total clientes Horeca Imagen <span class="hf-count" data-draw="tt-total-n" data-source="evaluacion">—</span></h2>
       <p class="hf-note">Todos los clientes de la base, de mayor a menor ON FIVE. Al final van los clientes no relevados, con el motivo en el comentario.</p>
-      <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar = KPI exonerado:</b> el local no tenía promoción ni material de ninguna marca, por eso se le otorga el puntaje de Promo SO o Visibilidad.</span></span></p>
+      <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
       <div class="hf-scroll hf-scroll-tall">
         <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
           <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
@@ -1769,9 +1770,10 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     const t = hfTTData();
     if (!t) return;
     const s = t.s, mesSel = t.mes;
-    const quien = s.kam === 'Todos' ? 'TT Canal' : hfEjName(s.kam);
+    const canal = t.all.filter((r) => hfInSel(r, { ...s, kam: 'Todos' }) && (mesSel === 'Todos' || r.mes === mesSel) && r.on_five != null);
     const rel = t.rows.filter((r) => r.on_five != null);
-    const items = [{ k: 'total', total: true, label: 'ON FIVE · ' + quien, v: hfAvg(rel), n: rel.length }];
+    const ejTxt = s.kam === 'Todos' ? '' : hfEjName(s.kam) + (s.giro !== 'Todos' ? ' en ' + s.giro : '') + ': ' + (rel.length ? hfPct(hfAvg(rel)) : 'sin locales relevados');
+    const items = [{ k: 'total', total: true, label: 'ON FIVE · TT Canal' + (s.giro !== 'Todos' ? ' · ' + s.giro : ''), v: hfAvg(canal), n: canal.length, ej: ejTxt }];
     hfGiroOrden.forEach((g) => {
       const gr = t.sinGiro.filter((r) => r.giro === g);
       const ga = gr.filter((r) => r.on_five != null);
@@ -1786,6 +1788,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       svg.append('circle').attr('class', 'arc').attr('cx', 50).attr('cy', 50).attr('r', 42).attr('transform', 'rotate(-90 50 50)');
       v.append('b');
       t.append('span').attr('class', 'n');
+      t.filter((x) => x.total).append('span').attr('class', 'ej');
       return t;
     }).order().call((t) => {
       t.classed('is-dim', (x) => !!x.dim).attr('aria-pressed', (x) => x.total ? null : String(s.giro === x.k));
@@ -1793,7 +1796,8 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       t.select('b').text((x) => x.v == null ? '—' : hfPct(x.v)).style('color', (x) => x.total ? null : hfScoreColor(x.v));
       const C = 2 * Math.PI * 42;
       t.select('circle.arc').attr('stroke-dasharray', (x) => ((x.v || 0) * C) + ' ' + C).style('stroke', (x) => hfScoreColor(x.v));
-      t.select('.n').text((x) => hfRel(x.n) + (x.total && s.giro !== 'Todos' ? ' · ' + s.giro : '') + (x.total && mesSel !== 'Todos' ? ' · ' + mesSel : ''));
+      t.select('.n').text((x) => hfRel(x.n) + (x.total && mesSel !== 'Todos' ? ' · ' + mesSel : ''));
+      t.select('.ej').text((x) => x.ej || '').style('display', (x) => x.ej ? null : 'none');
       t.on('click', (e, x) => dash.setParams({ giro: x.total || s.giro === x.k ? null : x.k }));
     });
   });
