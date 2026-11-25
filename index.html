@@ -425,8 +425,9 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
   .hf-tt-table td.hf-kp { font-weight: 700; }
   .hf-tt-table td { white-space: normal; vertical-align: middle; }
   .hf-tt-table th:first-child { min-width: 0; }
+  .hf-tt-table th[data-field="mes"] { max-width: 5.5rem; }
   .hf-of-badge { white-space: nowrap; }
-  .hf-tt-table td.hf-tt-fotos { white-space: normal; min-width: 8rem; font-size: var(--cds-font-size-caption); line-height: 1.6; }
+  .hf-tt-table td.hf-tt-fotos { white-space: normal; min-width: 6.5rem; font-size: var(--cds-font-size-caption); line-height: 1.6; }
   .hf-tt-table th, .hf-tt-table td { padding-left: 7px; padding-right: 7px; }
   .hf-noaje details { margin-top: 10px; border-radius: var(--cds-radius); background: color-mix(in srgb, var(--hf-pink) 8%, #ffffff); border: 1px solid color-mix(in srgb, var(--hf-pink) 25%, #ffffff); }
   .hf-noaje summary { cursor: pointer; padding: 10px 14px; font-size: var(--cds-font-size-body); font-weight: 600; color: #b02a43; }
@@ -455,7 +456,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
   .hf-key-it { display: flex; align-items: center; gap: 8px; }
   .hf-exo-key { display: grid; gap: 6px; margin: -2px 0 10px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
   .hf-exo-key i { flex: none; width: 1.6rem; height: 1rem; border-radius: 4px; background: #fdf0c8; box-shadow: inset 0 0 0 1px #f6d77c; }
-  .hf-tt-table td.hf-com { white-space: normal; min-width: 13rem; max-width: 30rem; font-size: var(--cds-font-size-caption); line-height: 1.45; color: var(--color-fg-muted); }
+  .hf-tt-table td.hf-com { white-space: normal; min-width: 9rem; max-width: 26rem; font-size: var(--cds-font-size-caption); line-height: 1.45; color: var(--color-fg-muted); }
   .hf-tt-table td.hf-com.is-empty { color: var(--cds-chart-muted); }
   .hf-com-t { display: block; }
   .hf-com.is-open .hf-com-t { display: block; -webkit-line-clamp: unset; overflow: visible; }
@@ -561,7 +562,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         <p class="hf-eyebrow">Vista TT Canal</p>
         <h2>Resultado del canal y por ejecutivo</h2>
         <p>Resultados, oportunidades y puntajes de ejecución por el relevo IPP ON FIVE al cierre del mes pasado.</p>
-        <div class="hf-mes"><span class="hf-mes-l">Mes del relevo</span><div class="hf-mes-chips" role="group" aria-label="Filtrar por mes" data-draw="tt-mes" data-source="evaluacion"></div></div>
+        <div class="hf-mes"><span class="hf-mes-l">Mes de ejecución</span><div class="hf-mes-chips" role="group" aria-label="Filtrar por mes" data-draw="tt-mes" data-source="evaluacion"></div></div>
       </div>
     </div>
     <div class="hf-exec" role="group" aria-label="Ver por ejecutivo" data-draw="tt-chips" data-source="evaluacion"></div>
@@ -591,7 +592,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
-            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
+            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes de ejecución</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th data-field="giro">Giro</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
             <tbody data-draw="tt-top"></tbody>
           </table>
         </div>
@@ -602,7 +603,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
-            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
+            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes de ejecución</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th data-field="giro">Giro</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
             <tbody data-draw="tt-bottom"></tbody>
           </table>
         </div>
@@ -612,7 +613,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         <p class="hf-note">Listado de clientes críticos que no cumplen con una buena ejecución. Validar si tiene giro de negocio correcto, ajustar la marca prioritaria o trasladarlos al Horeca Clásico.</p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
-            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
+            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes de ejecución</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th data-field="giro">Giro</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
             <tbody data-draw="tt-noaje"></tbody>
           </table>
         </div>
@@ -625,7 +626,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
       <div class="hf-scroll hf-scroll-tall">
         <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
-          <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
+          <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes de ejecución</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th data-field="giro">Giro</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
           <tbody data-draw="tt-total"></tbody>
         </table>
       </div>
@@ -704,7 +705,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         ].filter(Boolean);
         const fv = fotos.filter(([f]) => first(v[f]));
         return {
-          id: v.id, nombre: v.nombre, cliente: c ? c.nombre : v.cliente, fecha: v.fecha, mes: v.fecha ? ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dic'][Number(String(v.fecha).slice(5, 7)) - 1] + ' ' + String(v.fecha).slice(0, 4) : null, visitas: 1, visitas_local: vs.length, giro: v.giro, cartera_id: c ? c.id : null, nombre_cartera: c ? c.nombre : null,
+          id: v.id, nombre: v.nombre, cliente: c ? c.nombre : v.cliente, fecha: v.fecha, mes: 'Oct 2026', mes_key: '2026-10', visitas: 1, visitas_local: vs.length, giro: v.giro, cartera_id: c ? c.id : null, nombre_cartera: c ? c.nombre : null,
           acuerdo: c ? c.acuerdo_comercial : null, observacion: c ? c.observacion : null, on_five_anterior: c && c.observacion ? c.on_five_reporte : null,
           promo_exonerada: aud && promoExo && p.promo_so > 0, visib_exonerada: aud && visExo && p.visibilidad > 0,
           on_five_real: aud ? s - (promoExo && p.promo_so > 0 ? p.promo_so : 0) - (visExo && p.visibilidad > 0 ? p.visibilidad : 0) : null,
@@ -1748,10 +1749,11 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
   dash.draw('tt-mes', (el) => {
     const t = hfTTData();
     if (!t) return;
-    const meses = [...new Map(t.all.filter((r) => r.fecha && r.mes).map((r) => [String(r.fecha).slice(0, 7), r.mes])).entries()].sort((a, b) => a[0].localeCompare(b[0])).map((x) => x[1]);
-    d3.select(el).selectAll('button').data([['', 'Todos los meses'], ...meses.map((m) => [m, m])], (o) => o[0])
+    const meses = [...new Map(t.all.filter((r) => r.mes_key && r.mes).map((r) => [r.mes_key, r.mes])).entries()].sort((a, b) => a[0].localeCompare(b[0])).map((x) => x[1]);
+    const opts = meses.length > 1 ? [['', 'Todos los meses'], ...meses.map((m) => [m, m])] : meses.map((m) => [m, m]);
+    d3.select(el).selectAll('button').data(opts, (o) => o[0])
       .join((enter) => enter.append('button').attr('type', 'button').attr('class', 'hf-mes-chip'))
-      .text((o) => o[1]).attr('aria-pressed', (o) => String((o[0] || 'Todos') === t.mes))
+      .text((o) => o[1]).attr('aria-pressed', (o) => String((o[0] || 'Todos') === t.mes || (meses.length === 1 && t.mes === 'Todos')))
       .on('click', (e, o) => dash.setParams({ mes: o[0] || null }));
   });
   dash.draw('tt-chips', (el) => {
@@ -1777,7 +1779,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     hfGiroOrden.forEach((g) => {
       const gr = t.sinGiro.filter((r) => r.giro === g);
       const ga = gr.filter((r) => r.on_five != null);
-      if (gr.length) items.push({ k: g, label: g, v: hfAvg(ga), n: ga.length, dim: s.giro !== 'Todos' && g !== s.giro });
+      items.push({ k: g, label: g, v: hfAvg(ga), n: ga.length, dim: s.giro !== 'Todos' && g !== s.giro });
     });
     d3.select(el).selectAll(':scope > .hf-tt-tile').data(items, (x) => x.k).join((enter) => {
       const t = enter.append('button').attr('type', 'button').attr('class', (x) => 'hf-tt-tile' + (x.total ? ' is-total' : ''));
@@ -1796,7 +1798,9 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       t.select('b').text((x) => x.v == null ? '—' : hfPct(x.v)).style('color', (x) => x.total ? null : hfScoreColor(x.v));
       const C = 2 * Math.PI * 42;
       t.select('circle.arc').attr('stroke-dasharray', (x) => ((x.v || 0) * C) + ' ' + C).style('stroke', (x) => hfScoreColor(x.v));
-      t.select('.n').text((x) => hfRel(x.n) + (x.total && mesSel !== 'Todos' ? ' · ' + mesSel : ''));
+      const mesesData = [...new Set(t.data().length ? (hfTTData() || { all: [] }).all.map((r) => r.mes) : [])];
+      const mesLbl = mesSel !== 'Todos' ? mesSel : (mesesData.length === 1 ? mesesData[0] : '');
+      t.select('.n').text((x) => hfRel(x.n) + (x.total && mesLbl ? ' · ' + mesLbl : ''));
       t.select('.ej').text((x) => x.ej || '').style('display', (x) => x.ej ? null : 'none');
       t.on('click', (e, x) => dash.setParams({ giro: x.total || s.giro === x.k ? null : x.k }));
     });
@@ -1898,7 +1902,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     let of;
     if (rel) of = hfBadge(r.on_five);
     else { of = document.createElement('td'); of.className = 'ctr'; const t = document.createElement('span'); t.className = 'hf-est is-norel'; t.textContent = 'No relevado'; of.appendChild(t); }
-    tr.append(hfTd(pos, 'ctr hf-pos'), hfTd(r.mes || ''), hfTd(hfEjName(r.kam)), hfTd(r.cliente, 'hf-cli'),
+    tr.append(hfTd(pos, 'ctr hf-pos'), hfTd(r.mes || ''), hfTd(hfEjName(r.kam)), hfTd(r.cliente, 'hf-cli'), hfTd(r.giro, 'hf-giro'),
       hfKp(r.encarte, 0.3), hfKp(r.perfect_serve, 0.2), hfKp(r.frio, 0.2), hfKp(r.promo_so, 0.15, r.promo_exonerada), hfKp(r.visibilidad, 0.15, r.visib_exonerada),
       of, hfCom(HF_COM[r.cliente] || r.comentario));
     if (fotosCol) {
@@ -1916,7 +1920,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     if (!t) return;
     const rows = t[pick];
     rows.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
-    if (!rows.length) hfFoot(tb, pick === 'top' ? 'No hay locales relevados en este filtro.' : 'No hay más locales críticos (menos de 85%) en este filtro.', 12);
+    if (!rows.length) hfFoot(tb, pick === 'top' ? 'No hay locales relevados en este filtro.' : 'No hay más locales críticos (menos de 85%) en este filtro.', 13);
   });
   hfTTTable('tt-top', 'top');
   hfTTTable('tt-bottom', 'bottom');
@@ -1926,7 +1930,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     const t = hfTTRows();
     if (!t) return;
     t.cero.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
-    if (!t.cero.length) hfFoot(tb, 'No hay clientes con puntaje cero en este filtro.', 12);
+    if (!t.cero.length) hfFoot(tb, 'No hay clientes con puntaje cero en este filtro.', 13);
   });
 
   dash.draw('tt-total-n', (el) => {
@@ -1943,7 +1947,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     const norel = t.todos.filter((r) => r.on_five == null).sort((x, y) => x.cliente.localeCompare(y.cliente));
     rel.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
     norel.forEach((r) => tb.appendChild(hfRankRow(r, '—', true)));
-    if (!t.todos.length) hfFoot(tb, 'No hay clientes en este filtro.', 12);
+    if (!t.todos.length) hfFoot(tb, 'No hay clientes en este filtro.', 13);
   });
 
   /* ---------- Oportunidades ---------- */
