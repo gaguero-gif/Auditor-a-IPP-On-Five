@@ -394,10 +394,15 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
   .hf-tt-tile.is-total b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.9rem; line-height: 1; }
   .hf-tt-bar { height: .55rem; border-radius: 999px; background: #eef6f6; overflow: hidden; margin: 4px 0 2px; }
   .hf-tt-bar i { display: block; height: 100%; border-radius: 999px; transition: width .6s ease; }
-  .hf-tt-tile:not(.is-total) b { font-size: 2.4rem; }
+  .hf-tt-tile:not(.is-total) { justify-items: center; text-align: center; }
+  .hf-tt-tile:not(.is-total) .v { position: relative; width: 5.8rem; height: 5.8rem; margin: 2px 0; }
+  .hf-tt-tile:not(.is-total) svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hf-tt-tile:not(.is-total) .trk { fill: none; stroke: #e9f3f3; stroke-width: 9; }
+  .hf-tt-tile:not(.is-total) .arc { fill: none; stroke-width: 9; stroke-linecap: round; transition: stroke-dasharray .6s ease; }
+  .hf-tt-tile:not(.is-total) b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.45rem; line-height: 1; }
   .hf-sub { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; font-size: var(--cds-font-size-body); font-weight: 700; color: var(--hf-teal-deep); }
   .hf-sub span { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--hf-teal-deep); color: #ffffff; font-size: 12px; }
-  .hf-card.is-top .hf-scroll, .hf-card.is-bottom .hf-scroll { max-height: none; }
+  .hf-rk .hf-scroll { max-height: none; }
   .hf-sub.is-noaje { color: #b02a43; }
   .hf-sub.is-noaje span { background: #b02a43; }
   .hf-sub small { flex-basis: 100%; font-weight: 400; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
@@ -417,15 +422,62 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
   .hf-card.is-top h2 { color: #1f7a3a; }
   .hf-card.is-bottom h2 { color: #b02a43; }
   .hf-tt-table td.hf-kp { font-weight: 700; }
-  .hf-tt-table td { white-space: nowrap; vertical-align: middle; }
-  .hf-tt-table td:nth-child(4) { white-space: normal; min-width: 9rem; }
-  .hf-tt-table td.hf-tt-fotos { white-space: normal; min-width: 14rem; }
+  .hf-tt-table td { white-space: normal; vertical-align: middle; }
+  .hf-tt-table th:first-child { min-width: 0; }
+  .hf-of-badge { white-space: nowrap; }
+  .hf-tt-table td.hf-tt-fotos { white-space: normal; min-width: 8rem; font-size: var(--cds-font-size-caption); line-height: 1.6; }
+  .hf-tt-table th, .hf-tt-table td { padding-left: 7px; padding-right: 7px; }
   .hf-noaje details { margin-top: 10px; border-radius: var(--cds-radius); background: color-mix(in srgb, var(--hf-pink) 8%, #ffffff); border: 1px solid color-mix(in srgb, var(--hf-pink) 25%, #ffffff); }
   .hf-noaje summary { cursor: pointer; padding: 10px 14px; font-size: var(--cds-font-size-body); font-weight: 600; color: #b02a43; }
   .hf-noaje ul { margin: 0; padding: 0 14px 12px 32px; columns: 2 16rem; font-size: var(--cds-font-size-caption); line-height: 1.7; }
   .hf-pos { font-weight: 800; color: var(--hf-teal-deep); }
   .is-bottom .hf-pos { color: #b02a43; }
-  .hf-of-badge { display: inline-block; min-width: 4.2rem; text-align: center; padding: 5px 10px; border-radius: 999px; color: #ffffff; font-weight: 800; font-size: 1.05rem; font-variant-numeric: tabular-nums; box-shadow: 0 2px 6px rgba(0, 0, 0, .12); }
+  .hf-of-badge { display: inline-block; min-width: 3.6rem; text-align: center; padding: 4px 8px; border-radius: 999px; color: #ffffff; font-weight: 800; font-size: 1.05rem; font-variant-numeric: tabular-nums; box-shadow: 0 2px 6px rgba(0, 0, 0, .12); }
+
+  /* v6: ranking y listado */
+  .hf-sem-key { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: -4px 0 12px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .hf-sem-key span::before { content: ""; display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; background: var(--k); margin-right: 6px; vertical-align: -1px; }
+  .hf-rank-seg { display: grid; gap: var(--cds-gap-md); padding: var(--cds-pad-lg); border-radius: calc(var(--cds-radius) + 4px); background: linear-gradient(180deg, #f3fbfb, #ffffff); border: 1px solid var(--color-border-line); }
+  .hf-rank-head .hf-eyebrow { margin: 0 0 4px; font-size: var(--cds-font-size-heading); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--hf-teal-deep); }
+  .hf-rank-head .hf-note { margin: 0; }
+  .hf-rk { border-left: 6px solid var(--rk); }
+  .hf-rk.is-top { --rk: var(--color-ok); }
+  .hf-rk.is-bottom { --rk: var(--color-warn); }
+  .hf-rk.is-cero { --rk: var(--color-bad); background: color-mix(in srgb, var(--color-bad) 4%, #ffffff); }
+  .hf-rk.is-top h2 { color: #1f7a3a; }
+  .hf-rk.is-bottom h2 { color: #9a5b00; }
+  .hf-rk.is-cero h2 { color: #b02a43; }
+  .hf-rk h2, .hf-listado h2 { font-family: var(--font-sans); font-size: 1.15rem; font-weight: 800; letter-spacing: 0; line-height: 1.3; }
+  .hf-listado h2 { color: var(--hf-teal-deep); }
+  .hf-tt-table th small { display: block; font-weight: 400; font-size: 11px; opacity: .75; }
+  .hf-tt-table td.hf-kp.is-exo { background: #fdf0c8; box-shadow: inset 0 0 0 1px #f6d77c; }
+  .hf-key-it { display: flex; align-items: center; gap: 8px; }
+  .hf-exo-key { display: grid; gap: 6px; margin: -2px 0 10px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .hf-exo-key i { flex: none; width: 1.6rem; height: 1rem; border-radius: 4px; background: #fdf0c8; box-shadow: inset 0 0 0 1px #f6d77c; }
+  .hf-tt-table td.hf-com { white-space: normal; min-width: 13rem; max-width: 30rem; font-size: var(--cds-font-size-caption); line-height: 1.45; color: var(--color-fg-muted); }
+  .hf-tt-table td.hf-com.is-empty { color: var(--cds-chart-muted); }
+  .hf-com-t { display: block; }
+  .hf-com.is-open .hf-com-t { display: block; -webkit-line-clamp: unset; overflow: visible; }
+  .hf-com-more { margin-top: 2px; padding: 0; border: 0; background: none; font: inherit; font-size: 11px; font-weight: 700; color: var(--hf-teal-deep); cursor: pointer; text-decoration: underline; }
+  .hf-tt-table td.hf-cli { white-space: normal; min-width: 7.5rem; font-weight: 600; }
+  .hf-tt-table th { white-space: normal; vertical-align: bottom; }
+  .hf-tt-table th.ctr { min-width: 3.2rem; }
+  .hf-muted { color: var(--color-fg-muted); }
+  .hf-kp-par { color: #c76a00; font-weight: 800; }
+  .hf-listado { margin-top: var(--cds-gap-lg); }
+  .hf-count { display: inline-block; margin-left: 8px; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--hf-teal) 14%, #ffffff); color: var(--hf-teal-deep); font-size: var(--cds-font-size-caption); font-weight: 700; vertical-align: 2px; }
+  .hf-scroll-tall { max-height: 36rem !important; overflow: auto; }
+  .hf-scroll-tall thead th { position: sticky; top: 0; background: #ffffff; z-index: 1; }
+  .hf-est { display: inline-block; white-space: nowrap; padding: 2px 10px; border-radius: 999px; font-size: var(--cds-font-size-caption); font-weight: 700; }
+  .hf-est.is-rel { background: color-mix(in srgb, var(--color-ok) 14%, #ffffff); color: #1f7a3a; }
+  .hf-est.is-norel { background: color-mix(in srgb, var(--color-bad) 12%, #ffffff); color: #b02a43; }
+  .hf-est-mot { display: block; margin-top: 3px; font-size: 11px; color: var(--color-fg-muted); white-space: normal; }
+  .hf-mes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 12px; }
+  .hf-mes-l { font-size: var(--cds-font-size-caption); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--hf-teal-deep); }
+  .hf-mes-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .hf-mes-chip { font: inherit; font-size: var(--cds-font-size-caption); font-weight: 600; border: 1px solid var(--hf-teal); background: #ffffff; color: var(--hf-teal-deep); border-radius: 999px; padding: 5px 14px; cursor: pointer; }
+  .hf-mes-chip[aria-pressed="true"] { background: var(--hf-teal); border-color: var(--hf-teal); color: #ffffff; }
+  .hf-mes-chip:focus-visible { outline: 2px solid var(--hf-teal-deep); outline-offset: 2px; }
   .hf-tiles-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
 </style>
 <script>// https://d3js.org v7.9.0 Copyright 2010-2023 Mike Bostock
@@ -507,54 +559,76 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       <div class="hf-sec-text">
         <p class="hf-eyebrow">Vista TT Canal</p>
         <h2>Resultado del canal y por ejecutivo</h2>
-        <p>ON FIVE del canal y de cada ejecutivo, por giro y por KPI, con la efectividad de la visita (locales auditados sobre el total de la base) los 10 locales con mayor ON FIVE y los de menor ON FIVE, separados entre los que venden AJE y los que no.</p>
+        <p>Resultados, oportunidades y puntajes de ejecución por el relevo IPP ON FIVE al cierre del mes pasado.</p>
+        <div class="hf-mes"><span class="hf-mes-l">Mes del relevo</span><div class="hf-mes-chips" role="group" aria-label="Filtrar por mes" data-draw="tt-mes" data-source="evaluacion"></div></div>
       </div>
     </div>
     <div class="hf-exec" role="group" aria-label="Ver por ejecutivo" data-draw="tt-chips" data-source="evaluacion"></div>
-    <div class="hf-tt-tiles" data-draw="tt-giros" data-source="agg"></div>
+    <div class="hf-tt-tiles" data-draw="tt-giros" data-source="evaluacion"></div>
     <div class="hf-grid hf-grid-2">
       <section class="hf-card">
         <h2>% de cumplimiento por KPI</h2>
-        <p class="hf-note">Locales auditados que cumplen cada KPI del ON FIVE.</p>
-        <div class="hf-hbars dash-skeleton" data-draw="tt-kpi" data-source="pilares"></div>
+        <p class="hf-note">Locales relevados que cumplen cada KPI del ON FIVE.</p>
+        <div class="hf-sem-key"><span style="--k: var(--color-ok);">Verde 70–100%</span><span style="--k: var(--color-warn);">Ámbar 60–69%</span><span style="--k: var(--color-bad);">Rojo 0–59%</span></div>
+        <div class="hf-hbars dash-skeleton" data-draw="tt-kpi" data-source="evaluacion"></div>
       </section>
       <section class="hf-card">
         <h2>Efectividad de la visita</h2>
-        <p class="hf-note">Locales auditados sobre el total de la base, y motivos por los que no se auditó el resto.</p>
-        <div class="hf-efect dash-skeleton" data-draw="tt-efect" data-source="cobertura"></div>
+        <p class="hf-note">Locales relevados sobre el total de la base, y motivos por los que no se relevó el resto.</p>
+        <div class="hf-efect dash-skeleton" data-draw="tt-efect" data-source="evaluacion"></div>
       </section>
     </div>
-    <div class="hf-grid" style="grid-template-columns: 1fr;">
-      <section class="hf-card is-top">
-        <h2>Top 10: los 10 locales con mayor ON FIVE</h2>
-        <p class="hf-note">Con las fotos de cada local: carta, producto, frío, promoción y visibilidad. Cada enlace abre la foto que tomó el auditor.</p>
+
+    <div class="hf-rank-seg">
+      <div class="hf-rank-head">
+        <p class="hf-eyebrow">Ranking de ejecución por cliente</p>
+        <p class="hf-note">Tres grupos: los mejores locales, los locales críticos con oportunidad y los clientes con puntaje cero.</p>
+      </div>
+      <section class="hf-card hf-rk is-top">
+        <h2>Top 10: Mejores locales</h2>
+        <p class="hf-note">Listado de los 10 clientes mejor ejecutados.</p>
+        <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar = KPI exonerado:</b> el local no tenía promoción ni material de ninguna marca, por eso se le otorga el puntaje de Promo SO o Visibilidad.</span></span></p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
-            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">KPI 1</th><th class="ctr" data-field="perfect_serve">KPI 2</th><th class="ctr" data-field="frio">KPI 3</th><th class="ctr" data-field="promo_so">KPI 4</th><th class="ctr" data-field="visibilidad">KPI 5</th><th class="num" data-field="on_five">ON FIVE</th><th data-field="fotos">Fotos</th></tr></thead>
+            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
             <tbody data-draw="tt-top"></tbody>
           </table>
         </div>
       </section>
-      <section class="hf-card is-bottom">
-        <h2>Bottom: locales con menor ON FIVE</h2>
-        <p class="hf-note">Separados en dos grupos: los que venden AJE y los que no venden AJE.</p>
-        <h3 class="hf-sub is-aje"><span>A</span>Venden AJE · los 10 con menor ON FIVE <small>Los KPI en 0 muestran lo que les falta.</small></h3>
+      <section class="hf-card hf-rk is-bottom">
+        <h2>Bottom 10: Locales críticos con oportunidad</h2>
+        <p class="hf-note">Listado de los 10 clientes con mayor oportunidad de mejora / críticos en ejecución.</p>
+        <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar = KPI exonerado:</b> el local no tenía promoción ni material de ninguna marca, por eso se le otorga el puntaje de Promo SO o Visibilidad.</span></span></p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
-            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">KPI 1</th><th class="ctr" data-field="perfect_serve">KPI 2</th><th class="ctr" data-field="frio">KPI 3</th><th class="ctr" data-field="promo_so">KPI 4</th><th class="ctr" data-field="visibilidad">KPI 5</th><th class="num" data-field="on_five">ON FIVE</th></tr></thead>
+            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
             <tbody data-draw="tt-bottom"></tbody>
           </table>
         </div>
-        <h3 class="hf-sub is-noaje"><span>B</span>No venden AJE · 0% de ON FIVE <small data-draw="tt-noaje-n" data-source="evaluacion">—</small></h3>
+      </section>
+      <section class="hf-card hf-rk is-cero">
+        <h2>Clientes críticos: puntaje cero 0% IPP ON FIVE</h2>
+        <p class="hf-note">Listado de clientes críticos que no cumplen con una buena ejecución. Validar si tiene giro de negocio correcto, ajustar la marca prioritaria o trasladarlos al Horeca Clásico.</p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
-            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th data-field="giro">Giro</th><th class="num" data-field="on_five">ON FIVE</th></tr></thead>
+            <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
             <tbody data-draw="tt-noaje"></tbody>
           </table>
         </div>
       </section>
     </div>
-    <p class="hf-note hf-kpi-key">KPI 1 Encarte (30) · KPI 2 Perfect Serve (20) · KPI 3 Frío (20) · KPI 4 Promoción SO (15) · KPI 5 Visibilidad (15). Cada KPI muestra los puntos que obtuvo el local.</p>
+
+    <section class="hf-card hf-listado">
+      <h2>Total clientes Horeca Imagen <span class="hf-count" data-draw="tt-total-n" data-source="evaluacion">—</span></h2>
+      <p class="hf-note">Todos los clientes de la base, de mayor a menor ON FIVE. Al final van los clientes no relevados, con el motivo en el comentario.</p>
+      <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar = KPI exonerado:</b> el local no tenía promoción ni material de ninguna marca, por eso se le otorga el puntaje de Promo SO o Visibilidad.</span></span></p>
+      <div class="hf-scroll hf-scroll-tall">
+        <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
+          <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
+          <tbody data-draw="tt-total"></tbody>
+        </table>
+      </div>
+    </section>
   </section>
 
 </div>
@@ -1660,37 +1734,57 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
 
   /* ---------- Vista TT Canal ---------- */
   const hfGiroOrden = ['Discoteca', 'Restaurante', 'Restaurante TOP', 'Gimnasio', 'Bar'];
+  const hfEjName = (k) => k === 'Vacante' ? 'Ejecutivo vacante' : k;
+  const hfMesSel = () => dash.params().mes || 'Todos';
+  const hfTTData = () => {
+    const d = dash.data('evaluacion');
+    if (d.status !== 'ok') return null;
+    const s = hfSel(), mes = hfMesSel();
+    const okMes = (r) => mes === 'Todos' || r.mes === mes;
+    return { s, mes, all: d.data, rows: d.data.filter((r) => hfInSel(r, s) && okMes(r)), sinGiro: d.data.filter((r) => hfInSel(r, { ...s, giro: 'Todos' }) && okMes(r)) };
+  };
+  const hfAvg = (a) => a.length ? a.reduce((x, r) => x + r.on_five, 0) / a.length : null;
+  dash.draw('tt-mes', (el) => {
+    const t = hfTTData();
+    if (!t) return;
+    const meses = [...new Map(t.all.filter((r) => r.fecha && r.mes).map((r) => [String(r.fecha).slice(0, 7), r.mes])).entries()].sort((a, b) => a[0].localeCompare(b[0])).map((x) => x[1]);
+    d3.select(el).selectAll('button').data([['', 'Todos los meses'], ...meses.map((m) => [m, m])], (o) => o[0])
+      .join((enter) => enter.append('button').attr('type', 'button').attr('class', 'hf-mes-chip'))
+      .text((o) => o[1]).attr('aria-pressed', (o) => String((o[0] || 'Todos') === t.mes))
+      .on('click', (e, o) => dash.setParams({ mes: o[0] || null }));
+  });
   dash.draw('tt-chips', (el) => {
     const d = dash.data('evaluacion');
     if (d.status !== 'ok') return;
     const cur = dash.params().kam || '';
     const ejs = [...new Set(d.data.map((r) => r.kam))].sort((a, b) => (a === 'Vacante') - (b === 'Vacante') || a.localeCompare(b));
-    d3.select(el).selectAll('button').data([['', 'TT Canal'], ...ejs.map((k) => [k, k === 'Vacante' ? 'Ejecutivo vacante' : k])], (o) => o[0])
+    d3.select(el).selectAll('button').data([['', 'TT Canal'], ...ejs.map((k) => [k, hfEjName(k)])], (o) => o[0])
       .join((enter) => enter.append('button').attr('type', 'button').attr('class', 'hf-exec-chip'))
       .text((o) => o[1]).attr('aria-pressed', (o) => String(o[0] === cur))
       .on('click', (e, o) => dash.setParams({ kam: o[0] || null }));
   });
 
+  const hfRel = (n) => n ? n + (n === 1 ? ' local relevado' : ' locales relevados') : 'Sin locales relevados';
   dash.draw('tt-giros', (el) => {
-    const d = dash.data('agg');
-    if (d.status !== 'ok') return;
-    const s = hfSel();
-    const tot = d.data.find((r) => hfIs(r, s));
-    const quien = s.kam === 'Todos' ? 'TT Canal' : (s.kam === 'Vacante' ? 'Ejecutivo vacante' : s.kam);
-    const items = [{ k: 'total', total: true, label: 'ON FIVE · ' + quien, v: tot ? tot.on_five_prom : null, n: tot ? tot.auditados : 0 }];
+    const t = hfTTData();
+    if (!t) return;
+    const s = t.s, mesSel = t.mes;
+    const quien = s.kam === 'Todos' ? 'TT Canal' : hfEjName(s.kam);
+    const rel = t.rows.filter((r) => r.on_five != null);
+    const items = [{ k: 'total', total: true, label: 'ON FIVE · ' + quien, v: hfAvg(rel), n: rel.length }];
     hfGiroOrden.forEach((g) => {
-      const r = d.data.find((x) => x.marca === s.marca && x.kam === s.kam && x.giro === g);
-      if (r && r.locales) items.push({ k: g, label: g, v: r.on_five_prom, n: r.auditados, dim: s.giro !== 'Todos' && g !== s.giro });
+      const gr = t.sinGiro.filter((r) => r.giro === g);
+      const ga = gr.filter((r) => r.on_five != null);
+      if (gr.length) items.push({ k: g, label: g, v: hfAvg(ga), n: ga.length, dim: s.giro !== 'Todos' && g !== s.giro });
     });
     d3.select(el).selectAll(':scope > .hf-tt-tile').data(items, (x) => x.k).join((enter) => {
       const t = enter.append('button').attr('type', 'button').attr('class', (x) => 'hf-tt-tile' + (x.total ? ' is-total' : ''));
       t.append('span').attr('class', 'l');
       const v = t.append('div').attr('class', 'v');
-      const svg = v.filter((x) => x.total).append('svg').attr('viewBox', '0 0 100 100').attr('aria-hidden', 'true');
+      const svg = v.append('svg').attr('viewBox', '0 0 100 100').attr('aria-hidden', 'true');
       svg.append('circle').attr('class', 'trk').attr('cx', 50).attr('cy', 50).attr('r', 42);
       svg.append('circle').attr('class', 'arc').attr('cx', 50).attr('cy', 50).attr('r', 42).attr('transform', 'rotate(-90 50 50)');
       v.append('b');
-      t.filter((x) => !x.total).append('div').attr('class', 'hf-tt-bar').append('i');
       t.append('span').attr('class', 'n');
       return t;
     }).order().call((t) => {
@@ -1699,119 +1793,154 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       t.select('b').text((x) => x.v == null ? '—' : hfPct(x.v)).style('color', (x) => x.total ? null : hfScoreColor(x.v));
       const C = 2 * Math.PI * 42;
       t.select('circle.arc').attr('stroke-dasharray', (x) => ((x.v || 0) * C) + ' ' + C).style('stroke', (x) => hfScoreColor(x.v));
-      t.select('.hf-tt-bar i').style('width', (x) => (x.v || 0) * 100 + '%').style('background', (x) => hfScoreColor(x.v));
-      t.select('.n').text((x) => (x.n ? x.n + (x.n === 1 ? ' local auditado' : ' locales auditados') : 'Sin locales auditados') + (x.total && s.giro !== 'Todos' ? ' · ' + s.giro : ''));
+      t.select('.n').text((x) => hfRel(x.n) + (x.total && s.giro !== 'Todos' ? ' · ' + s.giro : '') + (x.total && mesSel !== 'Todos' ? ' · ' + mesSel : ''));
       t.on('click', (e, x) => dash.setParams({ giro: x.total || s.giro === x.k ? null : x.k }));
     });
   });
 
+  const hfKpiColor = (v) => v == null ? 'var(--cds-chart-muted)' : v >= 0.7 - 1e-9 ? 'var(--color-ok)' : v >= 0.6 - 1e-9 ? 'var(--color-warn)' : 'var(--color-bad)';
+  const HF_PIL = [['encarte', '1 · Encarte de marca', 0.30], ['perfect_serve', '2 · Perfect Serve', 0.20], ['frio', '3 · Disponibilidad de frío', 0.20], ['promo_so', '4 · Promoción SO', 0.15], ['visibilidad', '5 · Visibilidad', 0.15]];
   dash.draw('tt-kpi', (el) => {
-    const d = dash.data('pilares');
-    if (d.status !== 'ok') return hfNotReady(el, 'pilares');
-    const s = hfSel();
-    const rows = d.data.filter((r) => hfIs(r, s) && r.auditados > 0).sort((a, b) => a.orden - b.orden);
+    const t = hfTTData();
+    if (!t) return hfNotReady(el, 'evaluacion');
+    const aud = t.rows.filter((r) => r.on_five != null);
+    const rows = aud.length ? HF_PIL.map(([key, pilar, peso]) => { const cumplen = aud.filter((r) => r[key] > 0).length; return { key, pilar, peso, cumplen, auditados: aud.length, pct_cumple: cumplen / aud.length }; }) : [];
     hfHBars(el, rows, {
-      key: (r) => r.key, empty: 'No hay locales auditados en este filtro.',
+      key: (r) => r.key, empty: 'No hay locales relevados en este filtro.',
       label: (r) => 'KPI ' + r.pilar, tags: (r) => [['pesa ' + hfPts(r.peso)]],
       valueText: (r) => hfPct(r.pct_cumple),
-      value: (r) => r.pct_cumple, color: (r) => hfPilColor[r.key],
-      onClick: (r) => { const id = { encarte: 'p1-encarte', perfect_serve: 'p2-perfect-serve', frio: 'p3-frio', promo_so: 'p4-promo', visibilidad: 'p5-visibilidad' }[r.key]; const t = document.getElementById(id); if (t) { t.scrollIntoView({ behavior: hfDur ? 'smooth' : 'auto', block: 'start' }); dash.setLink(id); } },
+      value: (r) => r.pct_cumple, color: (r) => hfKpiColor(r.pct_cumple),
     });
   });
 
-  const HF_MOT_TT = { 'Requiere cita o permiso': 'No se dio facilidad: requiere cita o permiso', 'Cerrado o en remodelación': 'Cerrado definitivo o en remodelación', 'No se ubicó el local': 'No se ubicó el local', 'Otro motivo': 'Otro motivo', 'Sin comentario': 'Sin comentario' };
+  const HF_MOT_TT = [
+    ['M1', 'No se tuvieron las facilidades (cita, permiso o local no ubicado)', (m) => m !== 'Cerrado o en remodelación'],
+    ['M2', 'Cerrado definitivo o en remodelación', (m) => m === 'Cerrado o en remodelación'],
+  ];
   dash.draw('tt-efect', (el) => {
-    const d = dash.data('cobertura'), m = dash.data('motivos');
-    if (d.status !== 'ok') return hfNotReady(el, 'cobertura');
-    if (m.status !== 'ok') return hfNotReady(el, 'motivos');
+    const tt = hfTTData();
+    if (!tt) return hfNotReady(el, 'evaluacion');
     el.classList.remove('dash-skeleton');
-    const s = hfSel();
-    const r = d.data.find((x) => hfIs(x, s));
-    if (!r || !r.base) return hfOnlyEmpty(el, 'No hay locales en este filtro.');
+    const aud = tt.rows.filter((x) => x.on_five != null).length;
+    const r = { base: tt.rows.length, auditados: aud, no_auditados: tt.rows.length - aud, pct_auditado: tt.rows.length ? aud / tt.rows.length : null };
+    if (!r.base) return hfOnlyEmpty(el, 'No hay locales en este filtro.');
     const top = document.createElement('div'); top.className = 'hf-efect-top';
     const big = document.createElement('b'); big.textContent = hfPct(r.pct_auditado);
-    const sub = document.createElement('span'); sub.textContent = r.auditados + ' de ' + r.base + ' locales auditados';
+    const sub = document.createElement('span'); sub.textContent = r.auditados + ' de ' + r.base + ' locales relevados';
     top.append(big, sub);
     const tr = document.createElement('div'); tr.className = 'hf-efect-track'; tr.setAttribute('role', 'img'); tr.setAttribute('aria-label', 'Efectividad ' + hfPct(r.pct_auditado));
     const fi = document.createElement('i'); fi.style.width = r.pct_auditado * 100 + '%'; tr.appendChild(fi);
     const nodes = [top, tr];
-    const mot = m.data.filter((x) => hfIs(x, s) && x.locales > 0).sort((a, b) => a.orden - b.orden);
-    if (mot.length) {
-      const h = document.createElement('p'); h.className = 'hf-mot-h'; h.textContent = r.no_auditados + ' locales no auditados, por motivo';
+    const nor = tt.rows.filter((x) => x.on_five == null);
+    const grupos = HF_MOT_TT.map(([cod, txt, fn]) => [cod, txt, nor.filter((x) => fn(x.motivo)).length]).filter((g) => g[2] > 0);
+    if (grupos.length) {
+      const h = document.createElement('p'); h.className = 'hf-mot-h'; h.textContent = r.no_auditados + (r.no_auditados === 1 ? ' local no relevado' : ' locales no relevados') + ', por motivo';
       const ol = document.createElement('ol'); ol.className = 'hf-mot';
-      mot.forEach((x) => {
+      grupos.forEach(([cod, txt, n]) => {
         const li = document.createElement('li');
-        const tag = document.createElement('span'); tag.className = 'm'; tag.textContent = 'M' + (x.orden + 1);
-        const t = document.createElement('span'); t.textContent = HF_MOT_TT[x.motivo] || x.motivo;
-        const n = document.createElement('b'); n.textContent = x.locales;
-        li.append(tag, t, n); ol.appendChild(li);
+        const tag = document.createElement('span'); tag.className = 'm'; tag.textContent = cod;
+        const t = document.createElement('span'); t.textContent = txt;
+        const b = document.createElement('b'); b.textContent = n;
+        li.append(tag, t, b); ol.appendChild(li);
       });
       nodes.push(h, ol);
     } else {
-      const p = document.createElement('p'); p.className = 'hf-note'; p.textContent = 'Se auditaron todos los locales de este filtro.'; nodes.push(p);
+      const p = document.createElement('p'); p.className = 'hf-note'; p.textContent = 'Se relevaron todos los locales de este filtro.'; nodes.push(p);
     }
     el.replaceChildren(...nodes);
   });
 
   const hfTTRows = () => {
-    const d = dash.data('evaluacion');
-    if (d.status !== 'ok') return null;
-    const s = hfSel();
-    const a = d.data.filter((r) => hfInSel(r, s) && r.on_five != null);
+    const tt = hfTTData();
+    if (!tt) return null;
+    const base = tt.rows;
+    const a = base.filter((r) => r.on_five != null);
     const desc = [...a].sort((x, y) => y.on_five - x.on_five || x.cliente.localeCompare(y.cliente));
     const nTop = Math.min(10, Math.ceil(a.filter((r) => r.vende_aje).length / 2));
     const ids = new Set(desc.slice(0, nTop).map((r) => r.id));
-    const asc = a.filter((r) => r.vende_aje && !ids.has(r.id)).sort((x, y) => x.on_five - y.on_five || x.cliente.localeCompare(y.cliente));
-    return { top: desc.slice(0, nTop), bottom: asc.slice(0, 10), noaje: a.filter((r) => !r.vende_aje).sort((x, y) => x.cliente.localeCompare(y.cliente)) };
+    const asc = a.filter((r) => r.vende_aje && r.on_five < 0.85 - 1e-9 && !ids.has(r.id)).sort((x, y) => x.on_five - y.on_five || x.cliente.localeCompare(y.cliente));
+    return { top: desc.slice(0, nTop), bottom: asc.slice(0, 10), cero: a.filter((r) => !r.vende_aje).sort((x, y) => x.cliente.localeCompare(y.cliente)), todos: base };
+  };
+  const hfBadge = (v) => {
+    const td = document.createElement('td'); td.className = 'ctr';
+    const b = document.createElement('span'); b.className = 'hf-of-badge'; b.textContent = hfPct(v); b.style.background = hfScoreColor(v);
+    td.appendChild(b); return td;
+  };
+  const HF_COM = {"7 Puertos (Club Rinconada)": "Requiere cita y permiso para ingresar al club.", "Ahumaré SAC": "Vende Hey Fit en frío. Falta promoción y POP de Hey Fit.", "Allpa Hotel": "No vende AJE. Oportunidad: introducir las marcas.", "Ambar Rooftop bar": "Ejecución completa con promo Grenal's + Hey Fit. Competencia: Tango Twist 2 x S/ 50.", "Baco y Vaca": "No trabaja con AJE. Oportunidad: iniciar relación comercial.", "Best Wester Hotel": "Vende Cielo y Hey Fit, pero sin carta completa ni tragos. Falta completar encarte y perfect serve.", "Big Boy": "Solo vende Hey Fit en eventos. Oportunidad: incluirlo en su oferta regular.", "Big Bro Burger": "Vende Cielo y Hey Fit sin carta. Falta encarte, promo y POP; sumar AJE a sus combos.", "Boycott": "Hey Fit en carta y agua Cielo. Falta promoción y POP AJE.", "Canchas Fronton, Natural Energy (regatas)": "Requiere cita y permiso para ingresar al club.", "Canchas tenis (Jockey Club)": "Amplio portafolio AJE. Mejorar pizarra de precios y visibilidad AJE.", "Canchas tenis, la esquina (Club Rinconada)": "Requiere cita y permiso para ingresar al club.", "Capone": "Tragos Fit en carta y alfombrilla Hey Fit. Falta promo AJE; competencia: Pilsen 6 x S/ 100.", "Casa Pacha": "No vende AJE. Oportunidad: introducir las marcas.", "Casa Republica": "Pide que AJE coordine la visita para autorizar el ingreso.", "Centolla Cevicheria": "Local cerrado.", "Cinnabon Roll": "Cielo en carta y en frío. Falta Hey Fit como segunda marca.", "Club Planicie": "Requiere cita y permiso para ingresar al club.", "Coffee Busters": "Ejecución de referencia: carta, promos, frío Hey Fit y publicidad exterior. Pide vasos AJE.", "Come Vaca": "No vende AJE. Oportunidad: introducir las marcas.", "CPC Ginecólogos SAC": "Requiere cita: el médico atiende solo con pacientes programados.", "DAZZLER BY WYNDHAM HOTEL": "Pide que AJE coordine la visita para autorizar el ingreso.", "Disconection": "Cerrado en todas las visitas. Verificar si cerró definitivamente.", "Discoteca downtown": "Pide que AJE coordine la visita para autorizar el ingreso.", "Don Melchor": "Solo Hey Fit. Falta segunda marca AJE en carta.", "Don Zuma": "Solo Cielo y sin frío. Falta incorporar Hey Fit y producto frío.", "Donde Andres": "Hey Fit en carta. Falta segunda marca AJE; pide publicidad exterior.", "El Charrúa": "Solo Cielo en carta. Falta Hey Fit como segunda marca.", "El Quinto Escondite": "Cambió de razón social y no vende AJE. Actualizar datos del local.", "El Toyo y el Gordo": "No vende AJE, pero quiere volver a vender Cielo.", "El Velero (Regatas)": "Requiere cita y permiso para ingresar al club.", "Elephant": "Comparte local con Capone: tragos Fit y barmat Hey Fit. Falta promo AJE; competencia: Pilsen 6 x S/ 100.", "Festin (Disponible en Rappi)": "Hey Fit en combo. Falta segunda marca AJE en carta.", "Flor de loto (Jockey Club)": "Hey Fit, Cielo y Sporade con barmat Hey Fit. Falta promoción.", "Gimnasio (Jockey Club)": "Amplio portafolio AJE y frío Dilyte. Pendiente instalar pizarra.", "Graffiteria": "Tragos Fit en carta; falta segunda marca AJE. En barra domina Pilsen.", "Hotel Hilton Miraflores": "No trabaja con AJE. Oportunidad: iniciar relación comercial.", "Hotel Imperial": "Pide que AJE coordine la visita para autorizar el ingreso.", "Hotel Intercontinental": "No trabaja con AJE. Oportunidad: iniciar relación comercial.", "Humo": "Pide que AJE coordine la visita para autorizar el ingreso.", "Huolong evento": "Requiere cita y permiso para ingresar al club.", "Ibis Hotel": "No vende AJE. Oportunidad: introducir las marcas.", "Inside by Melia Hotel": "No vende AJE. Oportunidad: introducir las marcas.", "Juku Cafe": "Solo Cielo. Falta Hey Fit como segunda marca.", "July Spa (Jockey Club)": "Cielo con promo 2 x S/ 3.50 en table tent pequeño. Falta segunda marca AJE.", "KAI Spa": "Requiere cita para programar la visita.", "Kazoku": "No se ubicó el local. Confirmar dirección.", "La 22 (Refugio)": "Hey Fit en carta. Falta segunda marca AJE y promoción.", "La Chela": "Cielo en frío, sin carta ni Hey Fit. Encartar Cielo e introducir Hey Fit.", "La Choza de la Anaconda": "Solo Cielo. Falta Hey Fit y material AJE visible.", "La Combi": "Tragos Fit en carta; falta segunda marca AJE. En barra predomina Pilsen.", "La esquina de la Planicie": "Hey Fit en frío; falta segunda marca. Sin visibilidad AJE: dominan Tazza y Red Bull.", "La Onceava": "No vende AJE. Oportunidad: iniciar relación comercial.", "La Picada": "No vende AJE. Oportunidad: iniciar relación comercial.", "Lab Nutrition": "Solo Hey Fit, sin promo ni POP. Competencia: Bloom 2.ª lata a S/ 1.", "Lima Bar / Goya": "Hey Fit y Cielo. Sin visibilidad AJE: solo barmats de Stella Artois.", "Lomo 19": "Falta segunda marca AJE en carta.", "Los Remos (Regatas)": "Requiere cita y permiso para ingresar al club.", "Lumma": "Pide que AJE coordine la visita para autorizar el ingreso.", "Maicelo Restobar San Isidro": "Solo Cielo. Falta Hey Fit; tiene POP AJE pendiente de instalar.", "Mar de Grau - Benavides": "No vende AJE. Oportunidad: introducir las marcas.", "Matagrosso": "Tragos Fit en carta, table tents y barmats AJE. Falta promoción.", "Mitika (Bar mercado San Martin)": "No vende AJE. Oportunidad: introducir las marcas.", "Moche": "Solo Cielo. Falta incorporar Hey Fit.", "Morocho": "Pide que AJE coordine la visita para autorizar el ingreso.", "NEXTGEN": "Amplio portafolio, frío Hey Fit y mural Dilyte. Falta promoción.", "nobu.burgers": "Hey Fit solo en combo; no se vende por unidad.", "Ofelia": "Cerrado definitivamente. Retirar de la base.", "Open Bar": "Hey Fit en “Paloma Cocktail”; falta segunda marca. Sin visibilidad AJE: dominan barmats de Stella Artois.", "Payaso Loco": "Hey Fit en cócteles y barmats. Falta promo AJE; competencia: Flying Fish 2 x S/ 20.", "PERU PADEL CENTER": "Amplio portafolio y frío Amayu. Competencia con promos 2x1; falta promo AJE.", "Puerto Mancora": "No vende AJE. Oportunidad: introducir las marcas.", "Punto Italiano": "Solo Cielo. Falta Hey Fit como segunda marca.", "Qenqo": "Portafolio AJE y frío Dilyte, pero domina Monster. Reforzar POP AJE.", "Red Radison Hotel": "Pide que AJE coordine la visita para autorizar el ingreso.", "Restaurante Tara": "Pide que AJE coordine la visita para autorizar el ingreso.", "RO Café (Club Rinconada)": "Requiere cita y permiso para ingresar al club.", "RODRIGO SOTO": "No brindaron la dirección para la visita.", "Rolls de Diego": "Vende Hey Fit, pero no está en carta. Encartar Hey Fit.", "Saltao (Refugio)": "Hey Fit, Sporade y Volt en carta. Falta promoción y POP.", "San Telmo (Regatas)": "Requiere cita y permiso para ingresar al club.", "Sangucheria El Chinito": "No trabaja con AJE. Oportunidad: iniciar relación comercial.", "Sarita Colonia": "Hey Fit y Dilyte en carta, con POP Hey Fit. Incluir tragos Fit en carta.", "Spa caballeros (Club Rinconada)": "Requiere cita y permiso para ingresar al club.", "Stop Café": "No se ubicó el local. Confirmar dirección.", "Strega": "Tragos Fit en carta y barmat Hey Fit; hay frío de Red Bull. Falta promoción.", "Taberna San Jose": "Solo agua en carta. Falta incorporar Hey Fit.", "Tarata": "Local cerrado.", "Tío Mario": "No vende AJE. Oportunidad: introducir las marcas.", "Tramontana": "No vende AJE. Oportunidad: introducir las marcas.", "Viajero Hostel": "Local en remodelación.", "Victoria Bar": "Pide que AJE coordine la visita para autorizar el ingreso.", "Yusha Nikkei": "No vende AJE. Oportunidad: introducir las marcas."};
+  const hfCom = (txt) => {
+    const td = document.createElement('td'); td.className = 'hf-com';
+    if (!txt) { td.textContent = '—'; td.classList.add('is-empty'); return td; }
+    const t = document.createElement('span'); t.className = 'hf-com-t'; t.textContent = txt; td.appendChild(t);
+    if (txt.length > 400) {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'hf-com-more'; b.textContent = 'Ver más';
+      b.addEventListener('click', () => { const open = td.classList.toggle('is-open'); b.textContent = open ? 'Ver menos' : 'Ver más'; });
+      td.appendChild(b);
+    }
+    return td;
+  };
+  const hfFoot = (tb, txt, n) => { const tr = document.createElement('tr'); const c = hfTd(txt, 'hf-empty'); c.colSpan = n; tr.appendChild(c); tb.appendChild(tr); };
+  const hfKp = (v, max, exo) => {
+    if (v == null) return hfTd('—', 'ctr hf-muted');
+    const c = document.createElement('td'); c.className = 'ctr hf-kp';
+    const n = document.createElement('span'); n.textContent = hfPts(v);
+    if (v > 0 && v < max - 1e-9) n.className = 'hf-kp-par'; else c.style.color = v > 0 ? 'var(--color-ok)' : 'var(--color-bad)';
+    c.appendChild(n);
+    if (exo) { c.classList.add('is-exo'); c.title = 'KPI exonerado'; }
+    return c;
+  };
+  const hfRankRow = (r, pos, fotosCol) => {
+    const tr = document.createElement('tr'); tr.dataset.key = r.id;
+    const rel = r.on_five != null;
+    let of;
+    if (rel) of = hfBadge(r.on_five);
+    else { of = document.createElement('td'); of.className = 'ctr'; const t = document.createElement('span'); t.className = 'hf-est is-norel'; t.textContent = 'No relevado'; of.appendChild(t); }
+    tr.append(hfTd(pos, 'ctr hf-pos'), hfTd(r.mes || ''), hfTd(hfEjName(r.kam)), hfTd(r.cliente, 'hf-cli'),
+      hfKp(r.encarte, 0.3), hfKp(r.perfect_serve, 0.2), hfKp(r.frio, 0.2), hfKp(r.promo_so, 0.15, r.promo_exonerada), hfKp(r.visibilidad, 0.15, r.visib_exonerada),
+      of, hfCom(HF_COM[r.cliente] || r.comentario));
+    if (fotosCol) {
+      const fotos = document.createElement('td'); fotos.className = 'hf-links hf-tt-fotos';
+      const fs = r.fotos.split(', ').filter(Boolean);
+      fs.forEach((n, j) => { if (j) fotos.append(' · '); const url = r.foto_urls[j]; fotos.append(hfOkUrl(url) ? hfLink(url, n) : n); });
+      if (!fs.length) { const nf = document.createElement('span'); nf.className = 'hf-nofoto'; nf.textContent = 'Sin fotos'; fotos.appendChild(nf); }
+      tr.appendChild(fotos);
+    }
+    return tr;
   };
   const hfTTTable = (name, pick) => dash.draw(name, (tb) => {
     tb.replaceChildren();
     const t = hfTTRows();
     if (!t) return;
     const rows = t[pick];
-    const kp = (v, max) => { const c = hfTd(hfPts(v), 'ctr hf-kp'); c.style.color = v > 0 ? (v >= max - 1e-9 ? 'var(--color-ok)' : 'var(--color-warn)') : 'var(--color-bad)'; return c; };
-    rows.forEach((r, i) => {
-      const tr = document.createElement('tr'); tr.dataset.key = r.id;
-      const pos = hfTd('#' + (i + 1), 'ctr hf-pos');
-      const of = document.createElement('td'); of.className = 'num';
-      const badge = document.createElement('span'); badge.className = 'hf-of-badge'; badge.textContent = hfPct(r.on_five);
-      badge.style.background = hfScoreColor(r.on_five);
-      of.appendChild(badge);
-      tr.append(pos, hfTd(r.mes || ''), hfTd(r.kam === 'Vacante' ? 'Vacante' : r.kam), hfTd(r.cliente), kp(r.encarte, 0.3), kp(r.perfect_serve, 0.2), kp(r.frio, 0.2), kp(r.promo_so, 0.15), kp(r.visibilidad, 0.15), of);
-      if (pick === 'top') {
-        const fotos = document.createElement('td'); fotos.className = 'hf-links hf-tt-fotos';
-        const fs = r.fotos.split(', ').filter(Boolean);
-        fs.forEach((n, i) => { if (i) fotos.append(' · '); const url = r.foto_urls[i]; fotos.append(hfOkUrl(url) ? hfLink(url, n) : n); });
-        if (!fs.length) { const nf = document.createElement('span'); nf.className = 'hf-nofoto'; nf.textContent = 'Sin fotos'; fotos.appendChild(nf); }
-        tr.appendChild(fotos);
-      }
-      tb.appendChild(tr);
-    });
-    const foot = (txt) => { const tr = document.createElement('tr'); const c = hfTd(txt, 'hf-empty'); c.colSpan = pick === 'top' ? 11 : 10; tr.appendChild(c); tb.appendChild(tr); };
-    if (!rows.length) foot(pick === 'top' ? 'No hay locales auditados en este filtro.' : 'No hay más locales que vendan AJE en este filtro.');
+    rows.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
+    if (!rows.length) hfFoot(tb, pick === 'top' ? 'No hay locales relevados en este filtro.' : 'No hay más locales críticos (menos de 85%) en este filtro.', 12);
   });
-  dash.draw('tt-noaje-n', (el) => {
-    const t = hfTTRows();
-    if (!t) return;
-    const n = t.noaje.length;
-    el.textContent = n === 1 ? '1 local auditado que no vende AJE: no suma en ningún KPI.' : n + ' locales auditados que no venden AJE: no suman en ningún KPI.';
-  });
+  hfTTTable('tt-top', 'top');
+  hfTTTable('tt-bottom', 'bottom');
+
   dash.draw('tt-noaje', (tb) => {
     tb.replaceChildren();
     const t = hfTTRows();
     if (!t) return;
-    t.noaje.forEach((r, i) => {
-      const tr = document.createElement('tr'); tr.dataset.key = r.id;
-      const of = document.createElement('td'); of.className = 'num';
-      const badge = document.createElement('span'); badge.className = 'hf-of-badge'; badge.textContent = hfPct(r.on_five); badge.style.background = hfScoreColor(r.on_five);
-      of.appendChild(badge);
-      tr.append(hfTd('#' + (i + 1), 'ctr hf-pos'), hfTd(r.mes || ''), hfTd(r.kam), hfTd(r.cliente), hfTd(r.giro), of);
-      tb.appendChild(tr);
-    });
-    if (!t.noaje.length) { const tr = document.createElement('tr'); const c = hfTd('Todos los locales auditados de este filtro venden AJE.', 'hf-empty'); c.colSpan = 6; tr.appendChild(c); tb.appendChild(tr); }
+    t.cero.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
+    if (!t.cero.length) hfFoot(tb, 'No hay clientes con puntaje cero en este filtro.', 12);
   });
-  hfTTTable('tt-top', 'top');
-  hfTTTable('tt-bottom', 'bottom');
+
+  dash.draw('tt-total-n', (el) => {
+    const t = hfTTRows();
+    if (!t) return;
+    const rel = t.todos.filter((r) => r.on_five != null).length;
+    el.textContent = t.todos.length + ' clientes · ' + rel + ' relevados';
+  });
+  dash.draw('tt-total', (tb) => {
+    tb.replaceChildren();
+    const t = hfTTRows();
+    if (!t) return;
+    const rel = t.todos.filter((r) => r.on_five != null).sort((x, y) => y.on_five - x.on_five || x.cliente.localeCompare(y.cliente));
+    const norel = t.todos.filter((r) => r.on_five == null).sort((x, y) => x.cliente.localeCompare(y.cliente));
+    rel.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
+    norel.forEach((r) => tb.appendChild(hfRankRow(r, '—', true)));
+    if (!t.todos.length) hfFoot(tb, 'No hay clientes en este filtro.', 12);
+  });
 
   /* ---------- Oportunidades ---------- */
   const hfOppRow = (key) => { const d = dash.data('oportunidades'); const s = hfSel(); return d.status === 'ok' ? d.data.find((r) => hfIs(r, s) && r.key === key) : null; };
