@@ -1774,8 +1774,16 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     const s = t.s, mesSel = t.mes;
     const canal = t.all.filter((r) => hfInSel(r, { ...s, kam: 'Todos' }) && (mesSel === 'Todos' || r.mes === mesSel) && r.on_five != null);
     const rel = t.rows.filter((r) => r.on_five != null);
-    const ejTxt = s.kam === 'Todos' ? '' : hfEjName(s.kam) + (s.giro !== 'Todos' ? ' en ' + s.giro : '') + ': ' + (rel.length ? hfPct(hfAvg(rel)) : 'sin locales relevados');
-    const items = [{ k: 'total', total: true, label: 'ON FIVE · TT Canal' + (s.giro !== 'Todos' ? ' · ' + s.giro : ''), v: hfAvg(canal), n: canal.length, ej: ejTxt }];
+    let tot;
+    if (s.kam !== 'Todos' && s.giro === 'Todos') {
+      // Ejecutivo sin giro: su ON FIVE total en grande y el TT Canal como referencia
+      tot = { label: 'ON FIVE · ' + hfEjName(s.kam), v: hfAvg(rel), n: rel.length, ej: 'TT Canal: ' + (canal.length ? hfPct(hfAvg(canal)) : '—') };
+    } else {
+      // Con giro: promedio del giro en todo el canal y, si hay ejecutivo, su % en ese giro
+      const ejTxt = s.kam === 'Todos' ? '' : hfEjName(s.kam) + ' en ' + s.giro + ': ' + (rel.length ? hfPct(hfAvg(rel)) : 'sin locales relevados');
+      tot = { label: 'ON FIVE · TT Canal' + (s.giro !== 'Todos' ? ' · ' + s.giro : ''), v: hfAvg(canal), n: canal.length, ej: ejTxt };
+    }
+    const items = [{ k: 'total', total: true, ...tot }];
     hfGiroOrden.forEach((g) => {
       const gr = t.sinGiro.filter((r) => r.giro === g);
       const ga = gr.filter((r) => r.on_five != null);
