@@ -495,6 +495,19 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
   .hf-search-n { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
   .hf-tt-table th, .hf-tt-table td { text-align: center !important; }
   .hf-tt-table td.hf-com { text-align: center !important; }
+  .hf-rk-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+  .hf-rk-head h2 { margin: 0; }
+  .hf-obs-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  .hf-obs-hint { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .hf-obs-top { font: inherit; font-size: var(--cds-font-size-body); font-weight: 700; padding: 8px 18px; border-radius: 999px; border: 0; background: var(--hf-pink); color: #ffffff; cursor: pointer; box-shadow: 0 2px 8px rgba(239, 79, 107, .25); }
+  .hf-obs-top:disabled { background: #e7eded; color: #8aa3a5; box-shadow: none; cursor: not-allowed; }
+  .hf-obs-top:not(:disabled):hover { filter: brightness(.95); }
+  .hf-obs-top:focus-visible, tr.hf-selectable:focus-visible { outline: 2px solid var(--hf-teal-deep); outline-offset: 2px; }
+  tr.hf-selectable { cursor: pointer; }
+  tr.hf-selectable:hover td:not(.is-exo) { background-color: #f7fbfb; }
+  tr.hf-selectable.is-sel td:not(.is-exo) { background-color: #c9ecec !important; }
+  tr.hf-selectable.is-sel td.hf-cli { color: var(--hf-teal-deep); }
+  tr.hf-selectable.is-sel td:first-child { box-shadow: inset 4px 0 0 var(--hf-teal-deep); }
   .hf-tiles-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
 </style>
 <script>// https://d3js.org v7.9.0 Copyright 2010-2023 Mike Bostock
@@ -602,7 +615,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         <p class="hf-note">Tres grupos: los mejores locales, los locales críticos con oportunidad y los clientes con puntaje cero.</p>
       </div>
       <section class="hf-card hf-rk is-top">
-        <h2>Top 10: Mejores locales</h2>
+        <div class="hf-rk-head"><h2>Top 10: Mejores locales</h2><div class="hf-obs-wrap"><span class="hf-obs-hint" data-obs-hint="tt-top">Selecciona una fila para observar</span><button type="button" class="hf-obs-top" data-obs-for="tt-top" disabled>✎ Observar</button></div></div>
         <p class="hf-note">Listado de los 10 clientes mejor ejecutados.</p>
         <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
         <div class="hf-scroll">
@@ -613,7 +626,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         </div>
       </section>
       <section class="hf-card hf-rk is-bottom">
-        <h2>Bottom 10: Locales con oportunidad</h2>
+        <div class="hf-rk-head"><h2>Bottom 10: Locales con oportunidad</h2><div class="hf-obs-wrap"><span class="hf-obs-hint" data-obs-hint="tt-bottom">Selecciona una fila para observar</span><button type="button" class="hf-obs-top" data-obs-for="tt-bottom" disabled>✎ Observar</button></div></div>
         <p class="hf-note">Listado de los 10 clientes con mayor oportunidad de mejora / críticos en ejecución.</p>
         <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
         <div class="hf-scroll">
@@ -624,7 +637,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         </div>
       </section>
       <section class="hf-card hf-rk is-cero">
-        <h2>Clientes críticos con PUNTAJE CERO de IPP</h2>
+        <div class="hf-rk-head"><h2>Clientes críticos con PUNTAJE CERO de IPP</h2><div class="hf-obs-wrap"><span class="hf-obs-hint" data-obs-hint="tt-noaje">Selecciona una fila para observar</span><button type="button" class="hf-obs-top" data-obs-for="tt-noaje" disabled>✎ Observar</button></div></div>
         <p class="hf-note">Listado de clientes críticos que no cumplen con una buena ejecución. Validar si tiene giro de negocio correcto, ajustar la marca prioritaria o trasladarlos al Horeca Clásico.</p>
         <div class="hf-scroll">
           <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
@@ -636,7 +649,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     </div>
 
     <section class="hf-card hf-listado">
-      <h2>Total clientes Horeca Imagen <span class="hf-count" data-draw="tt-total-n" data-source="evaluacion">—</span></h2>
+      <div class="hf-rk-head"><h2>Total clientes Horeca Imagen <span class="hf-count" data-draw="tt-total-n" data-source="evaluacion">—</span></h2><div class="hf-obs-wrap"><span class="hf-obs-hint" data-obs-hint="tt-total">Selecciona una fila para observar</span><button type="button" class="hf-obs-top" data-obs-for="tt-total" disabled>✎ Observar</button></div></div>
       <p class="hf-note">Todos los clientes de la base, de mayor a menor ON FIVE. Al final van los clientes no relevados, con el motivo en el comentario.</p>
       <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
       <div class="hf-search"><label for="hf-buscar">Buscar cliente</label><input id="hf-buscar" type="search" placeholder="Escribe parte del nombre (ej.: jockey)" autocomplete="off"><span id="hf-buscar-n" class="hf-search-n" aria-live="polite"></span></div>
@@ -1934,6 +1947,41 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     a.setAttribute('aria-label', 'Registrar observación de ' + r.cliente);
     return a;
   };
+  const HF_ROWMAP = {}, HF_SELROW = {};
+  const hfSelApply = (name) => {
+    const tb = document.querySelector('[data-draw="' + name + '"]');
+    if (!tb) return;
+    let found = false;
+    tb.querySelectorAll('tr.hf-selectable').forEach((tr) => { const on = tr.dataset.key === HF_SELROW[name]; tr.classList.toggle('is-sel', on); tr.setAttribute('aria-selected', String(on)); if (on) found = true; });
+    if (!found) delete HF_SELROW[name];
+    const btn = document.querySelector('.hf-obs-top[data-obs-for="' + name + '"]');
+    const hint = document.querySelector('[data-obs-hint="' + name + '"]');
+    const r = HF_ROWMAP[HF_SELROW[name]];
+    if (btn) btn.disabled = !r;
+    if (hint) hint.textContent = r ? 'Seleccionado: ' + r.cliente : 'Selecciona una fila para observar';
+  };
+  const hfSelect = (tr) => {
+    const tb = tr.closest('tbody[data-draw]');
+    if (!tb) return;
+    const name = tb.dataset.draw;
+    HF_SELROW[name] = HF_SELROW[name] === tr.dataset.key ? undefined : tr.dataset.key;
+    hfSelApply(name);
+  };
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest && e.target.closest('.hf-obs-top');
+    if (btn) {
+      const r = HF_ROWMAP[HF_SELROW[btn.dataset.obsFor]];
+      if (r) window.open(hfFormUrl(r.mes, hfEjName(r.kam), r.cliente, r.giro, r.on_five != null ? hfPct(r.on_five) : 'No relevado'), '_blank', 'noopener');
+      return;
+    }
+    if (e.target.closest && e.target.closest('a')) return;
+    const tr = e.target.closest && e.target.closest('tr.hf-selectable');
+    if (tr) hfSelect(tr);
+  });
+  document.addEventListener('keydown', (e) => {
+    const tr = e.target.closest && e.target.closest('tr.hf-selectable');
+    if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); hfSelect(tr); }
+  });
   const hfRankRow = (r, pos, fotosCol) => {
     const tr = document.createElement('tr'); tr.dataset.key = r.id;
     const rel = r.on_five != null;
@@ -1950,7 +1998,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       if (!fs.length) { const nf = document.createElement('span'); nf.className = 'hf-nofoto'; nf.textContent = 'Sin fotos'; fotos.appendChild(nf); }
       tr.appendChild(fotos);
     }
-    const cli = tr.querySelector('.hf-cli'); if (cli) { cli.appendChild(document.createElement('br')); cli.appendChild(hfObsBtn(r)); }
+    HF_ROWMAP[r.id] = r; tr.classList.add('hf-selectable'); tr.tabIndex = 0; tr.setAttribute('aria-selected', 'false');
     return tr;
   };
   const hfTTTable = (name, pick) => dash.draw(name, (tb) => {
@@ -1959,6 +2007,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     if (!t) return;
     const rows = t[pick];
     rows.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
+    hfSelApply(name);
     if (!rows.length) hfFoot(tb, pick === 'top' ? 'No hay locales relevados en este filtro.' : 'No hay más locales críticos (menos de 85%) en este filtro.', 13);
   });
   hfTTTable('tt-top', 'top');
@@ -1969,6 +2018,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     const t = hfTTRows();
     if (!t) return;
     t.cero.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
+    hfSelApply('tt-noaje');
     if (!t.cero.length) hfFoot(tb, 'No hay clientes con puntaje cero en este filtro.', 13);
   });
 
@@ -1988,6 +2038,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     norel.forEach((r) => tb.appendChild(hfRankRow(r, '—', true)));
     if (!t.todos.length) hfFoot(tb, 'No hay clientes en este filtro.', 13);
     hfBuscar();
+    hfSelApply('tt-total');
   });
   const hfNorm = (x) => String(x || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   function hfBuscar() {
