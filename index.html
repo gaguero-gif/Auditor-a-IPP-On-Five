@@ -480,6 +480,21 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
   .hf-mes-chip { font: inherit; font-size: var(--cds-font-size-caption); font-weight: 600; border: 1px solid var(--hf-teal); background: #ffffff; color: var(--hf-teal-deep); border-radius: 999px; padding: 5px 14px; cursor: pointer; }
   .hf-mes-chip[aria-pressed="true"] { background: var(--hf-teal); border-color: var(--hf-teal); color: #ffffff; }
   .hf-mes-chip:focus-visible { outline: 2px solid var(--hf-teal-deep); outline-offset: 2px; }
+  .hf-exec-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+  .hf-obs-main { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px; background: var(--hf-pink); color: #ffffff; font-weight: 700; font-size: var(--cds-font-size-body); text-decoration: none; box-shadow: 0 2px 8px rgba(239, 79, 107, .25); }
+  .hf-obs-main:hover { filter: brightness(.95); }
+  .hf-obs-btn { display: inline-block; margin-top: 5px; padding: 2px 9px; font-weight: 700; border-radius: 999px; border: 1.5px solid var(--hf-pink); color: #b02a43; font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .hf-obs-btn:hover { background: var(--hf-pink); color: #ffffff; }
+  .hf-obs-main:focus-visible, .hf-obs-btn:focus-visible { outline: 2px solid var(--hf-teal-deep); outline-offset: 2px; }
+  .hf-search { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 12px; }
+  .hf-search label { font-size: var(--cds-font-size-caption); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--hf-teal-deep); }
+  .hf-search input { flex: 1 1 22rem; min-width: min(100%, 20rem); max-width: 30rem; font: inherit; font-size: var(--cds-font-size-body); padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--hf-teal); background: #ffffff; color: var(--color-fg); }
+  .hf-search input:focus { outline: 2px solid var(--hf-teal-deep); outline-offset: 1px; }
+  .hf-listado .hf-search { width: min(100%, 34rem); max-width: none; border: 0; padding: 0; background: none; }
+  .hf-listado .hf-search input { flex: 1 1 100%; width: 100%; max-width: none; min-width: 0; }
+  .hf-search-n { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .hf-tt-table th, .hf-tt-table td { text-align: center !important; }
+  .hf-tt-table td.hf-com { text-align: center !important; }
   .hf-tiles-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
 </style>
 <script>// https://d3js.org v7.9.0 Copyright 2010-2023 Mike Bostock
@@ -565,7 +580,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
         <div class="hf-mes"><span class="hf-mes-l">Mes de ejecución</span><div class="hf-mes-chips" role="group" aria-label="Filtrar por mes" data-draw="tt-mes" data-source="evaluacion"></div></div>
       </div>
     </div>
-    <div class="hf-exec" role="group" aria-label="Ver por ejecutivo" data-draw="tt-chips" data-source="evaluacion"></div>
+    <div class="hf-exec-row"><div class="hf-exec" role="group" aria-label="Ver por ejecutivo" data-draw="tt-chips" data-source="evaluacion"></div></div>
     <div class="hf-tt-tiles" data-draw="tt-giros" data-source="evaluacion"></div>
     <div class="hf-grid hf-grid-2">
       <section class="hf-card">
@@ -624,6 +639,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       <h2>Total clientes Horeca Imagen <span class="hf-count" data-draw="tt-total-n" data-source="evaluacion">—</span></h2>
       <p class="hf-note">Todos los clientes de la base, de mayor a menor ON FIVE. Al final van los clientes no relevados, con el motivo en el comentario.</p>
       <p class="hf-exo-key"><span class="hf-key-it"><i></i><span><b>Celda ámbar:</b> KPI exonerado según manual</span></span></p>
+      <div class="hf-search"><label for="hf-buscar">Buscar cliente</label><input id="hf-buscar" type="search" placeholder="Escribe parte del nombre (ej.: jockey)" autocomplete="off"><span id="hf-buscar-n" class="hf-search-n" aria-live="polite"></span></div>
       <div class="hf-scroll hf-scroll-tall">
         <table class="hf-table hf-tt-table" data-source="evaluacion" data-row-key="id">
           <thead><tr><th class="ctr" data-field="puesto">#</th><th data-field="mes">Mes de ejecución</th><th data-field="kam">Ejecutivo</th><th data-field="cliente">Cliente</th><th data-field="giro">Giro</th><th class="ctr" data-field="encarte">Encarte<small>30</small></th><th class="ctr" data-field="perfect_serve">Perfect Serve<small>20</small></th><th class="ctr" data-field="frio">Frío<small>20</small></th><th class="ctr" data-field="promo_so">Promo SO<small>15</small></th><th class="ctr" data-field="visibilidad">Visibilidad<small>15</small></th><th class="ctr" data-field="on_five">ON FIVE</th><th data-field="comentario">Comentario</th><th data-field="fotos">Fotos</th></tr></thead>
@@ -1756,6 +1772,12 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       .text((o) => o[1]).attr('aria-pressed', (o) => String((o[0] || 'Todos') === t.mes || (meses.length === 1 && t.mes === 'Todos')))
       .on('click', (e, o) => dash.setParams({ mes: o[0] || null }));
   });
+  dash.draw('tt-obs', (el) => {
+    const t = hfTTData();
+    if (!t) return;
+    const mes = t.mes !== 'Todos' ? t.mes : ([...new Set(t.all.map((r) => r.mes))].length === 1 ? t.all[0].mes : '');
+    el.href = hfFormUrl(mes, t.s.kam !== 'Todos' ? hfEjName(t.s.kam) : '', '');
+  });
   dash.draw('tt-chips', (el) => {
     const d = dash.data('evaluacion');
     if (d.status !== 'ok') return;
@@ -1904,6 +1926,14 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     if (exo) { c.classList.add('is-exo'); c.title = 'KPI exonerado'; }
     return c;
   };
+  const HF_FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSdcazL6v-mAl3NTxQsC6nxJisycCRbO6a_7g7r5uJVPV87kJQ/viewform?usp=pp_url';
+  const hfFormUrl = (mes, ej, cli, giro, of) => HF_FORM + '&entry.2108308764=' + encodeURIComponent(mes || '') + (ej ? '&entry.911121419=' + encodeURIComponent(ej) : '') + (cli ? '&entry.223752526=' + encodeURIComponent(cli) : '') + (giro ? '&entry.1669203792=' + encodeURIComponent(giro) : '') + (of ? '&entry.1183695078=' + encodeURIComponent(of) : '');
+  const hfObsBtn = (r) => {
+    const a = document.createElement('a'); a.className = 'hf-obs-btn'; a.target = '_blank'; a.rel = 'noopener';
+    a.href = hfFormUrl(r.mes, hfEjName(r.kam), r.cliente, r.giro, r.on_five != null ? hfPct(r.on_five) : 'No relevado'); a.textContent = 'Observar';
+    a.setAttribute('aria-label', 'Registrar observación de ' + r.cliente);
+    return a;
+  };
   const hfRankRow = (r, pos, fotosCol) => {
     const tr = document.createElement('tr'); tr.dataset.key = r.id;
     const rel = r.on_five != null;
@@ -1920,6 +1950,7 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
       if (!fs.length) { const nf = document.createElement('span'); nf.className = 'hf-nofoto'; nf.textContent = 'Sin fotos'; fotos.appendChild(nf); }
       tr.appendChild(fotos);
     }
+    const cli = tr.querySelector('.hf-cli'); if (cli) { cli.appendChild(document.createElement('br')); cli.appendChild(hfObsBtn(r)); }
     return tr;
   };
   const hfTTTable = (name, pick) => dash.draw(name, (tb) => {
@@ -1956,7 +1987,31 @@ body { padding: 24px max(16px, env(safe-area-inset-left, 0px)) 40px max(16px, en
     rel.forEach((r, i) => tb.appendChild(hfRankRow(r, '#' + (i + 1), true)));
     norel.forEach((r) => tb.appendChild(hfRankRow(r, '—', true)));
     if (!t.todos.length) hfFoot(tb, 'No hay clientes en este filtro.', 13);
+    hfBuscar();
   });
+  const hfNorm = (x) => String(x || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  function hfBuscar() {
+    const inp = document.getElementById('hf-buscar');
+    const tb = document.querySelector('[data-draw="tt-total"]');
+    if (!inp || !tb) return;
+    const q = hfNorm(inp.value.trim());
+    let n = 0, tot = 0;
+    tb.querySelectorAll('tr[data-key]').forEach((tr) => {
+      tot++;
+      const cli = tr.querySelector('.hf-cli');
+      const ok = !q || hfNorm(cli ? cli.firstChild.textContent : '').includes(q);
+      tr.style.display = ok ? '' : 'none';
+      if (ok) n++;
+    });
+    let vacio = tb.querySelector('.hf-no-match');
+    if (q && !n) {
+      if (!vacio) { vacio = document.createElement('tr'); vacio.className = 'hf-no-match'; const c = document.createElement('td'); c.colSpan = 13; c.className = 'hf-empty'; vacio.appendChild(c); tb.appendChild(vacio); }
+      vacio.firstChild.textContent = 'Ningún cliente coincide con "' + inp.value.trim() + '".';
+    } else if (vacio) vacio.remove();
+    const lab = document.getElementById('hf-buscar-n');
+    if (lab) lab.textContent = q ? n + ' de ' + tot + ' clientes' : '';
+  }
+  document.addEventListener('input', (e) => { if (e.target && e.target.id === 'hf-buscar') hfBuscar(); });
 
   /* ---------- Oportunidades ---------- */
   const hfOppRow = (key) => { const d = dash.data('oportunidades'); const s = hfSel(); return d.status === 'ok' ? d.data.find((r) => hfIs(r, s) && r.key === key) : null; };
